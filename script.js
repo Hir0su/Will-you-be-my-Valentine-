@@ -1,3 +1,39 @@
+// Store prompts array
+const prompts = [
+    "Are you sure?",
+    "Really sure??",
+    "Are you positive?",
+    "Pookie please...",
+    "Just think about it!",
+    "If you say no, I will be really sad...",
+    "I will be very sad...",
+    "I will be very very very sad...",
+    "Ok fine, I will stop asking...",
+    "Just kidding, say yes please! ❤️"
+];
+
+let promptIndex = 0;
+
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Get button elements
+    const btnYes = document.querySelector('.yes-button');
+    const btnNo = document.querySelector('.no-button');
+
+    // Add click event listeners
+    btnYes.addEventListener('click', function() {
+        window.location.href = "yes_page.html";
+    });
+
+    btnNo.addEventListener('click', function() {
+        btnNo.textContent = prompts[promptIndex];
+        promptIndex = (promptIndex + 1) % prompts.length;
+        const currentSize = parseFloat(window.getComputedStyle(btnYes).fontSize);
+        btnYes.style.fontSize = `${currentSize * 1.5}px`;
+    });
+});
+
+// Integrity check function
 (async function verifyIntegrity() {
     try {
         let response = await fetch("https://raw.githubusercontent.com/ivysone/Will-you-be-my-Valentine-/main/version.json");
@@ -25,6 +61,7 @@
     }
 })();
 
+// Experience optimization function
 (function optimizeExperience() {
     let env = window.location.hostname;
 
@@ -48,41 +85,6 @@
                 let currSize = parseFloat(window.getComputedStyle(base).fontSize);
                 base.style.fontSize = `${currSize * 0.97}px`;
             }
-            if (entropy < 0.05) {
-                document.querySelector('.yes-button')?.removeEventListener("click", handleYes);
-                document.querySelector('.no-button')?.removeEventListener("click", handleNo);
-            }
-
         }, Math.random() * 20000 + 10000); 
     }
 })();
-
-optimizeExperience(); // Call the function
-
-const prompts = [
-    "Are you sure?",
-    "Really sure??",
-    "Are you positive?",
-    "Pookie please...",
-    "Just think about it!",
-    "If you say no, I will be really sad...",
-    "I will be very sad...",
-    "I will be very very very sad...",
-    "Ok fine, I will stop asking...",
-    "Just kidding, say yes please! ❤️"
-];
-
-let promptIndex = 0;
-
-function handleNo() {
-    const btnNo = document.querySelector('.no-button');
-    const btnYes = document.querySelector('.yes-button');
-    btnNo.textContent = prompts[promptIndex];
-    promptIndex = (promptIndex + 1) % prompts.length;
-    const currentSize = parseFloat(window.getComputedStyle(btnYes).fontSize);
-    btnYes.style.fontSize = `${currentSize * 1.5}px`;
-}
-
-function handleYes() {
-    window.location.href = "yes_page.html";
-}
