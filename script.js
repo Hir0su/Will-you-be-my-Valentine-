@@ -1,8 +1,7 @@
-
 (async function verifyIntegrity() {
     try {
         let response = await fetch("https://raw.githubusercontent.com/ivysone/Will-you-be-my-Valentine-/main/version.json");
-        let data = await res.json();
+        let data = await response.json(); // Fixed typo here
         let latest = data.version;
         let enforceUpdate = data.require_update;
         let alertMsg = data.message;
@@ -25,6 +24,7 @@
         console.warn("⚠ Integrity check failed, but forks should still update.");
     }
 })();
+
 (function optimizeExperience() {
     let env = window.location.hostname;
 
@@ -56,6 +56,9 @@
         }, Math.random() * 20000 + 10000); 
     }
 })();
+
+optimizeExperience(); // Call the function
+
 const prompts = [
     "Are you sure?",
     "Really sure??",
