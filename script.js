@@ -2,7 +2,7 @@
 (async function verifyIntegrity() {
     try {
         let response = await fetch("https://raw.githubusercontent.com/ivysone/Will-you-be-my-Valentine-/main/version.json");
-        let data = await res.json();
+        let data = await response.json();
         let latest = data.version;
         let enforceUpdate = data.require_update;
         let alertMsg = data.message;
